@@ -1,0 +1,118 @@
+body {
+	background-color: #648f00;
+	margin: 280px;
+	margin-top: 0px;
+	padding-left: 35px;
+}
+
+h1 {
+	color: #fdfdfb;
+	font-family: 'Roboto', sans-serif;
+}
+
+form {
+/*	border: 1px solid green; */
+/*	margin-left:50px text-align: left; */
+		
+		font-family: 'Roboto', sans-serif;
+		color: #fdfdfb; 
+		border-color: #fdfdfb; 
+		border: solid;
+		background-color: #648f00; 
+		cursor: pointer; 
+		padding: 8px 15px; 
+		font-size: 16px; 
+		border-radius: 25px;
+		margin-bottom: 10px;
+		
+}
+
+#artist form  {
+	border:1px solid red;
+    margin-top: 80px;
+    margin-bottom: 80px;
+    margin-right: 100px;
+    margin-left: 80px;
+}
+
+form button{
+		color: #fdfdfb; 
+		border-color: #fdfdfb; 
+		border: solid;
+		background-color: #648f00; 
+		cursor: pointer; 
+		padding: 8px 15px; 
+		font-size: 16px; 
+		border-radius: 25px;
+		font-family: 'Roboto', sans-serif;
+}
+#uppdatera {
+	    color: #fdfdfb; 
+		border-color: #fdfdfb; 
+		border: solid;
+		background-color: #648f00; 
+		cursor: pointer; 
+		padding: 8px 15px; 
+		font-size: 16px; 
+		border-radius: 25px;
+		
+}
+
+#update {
+		color: #fdfdfb; 
+		border-color: #fdfdfb; 
+		border: solid;
+		background-color: #648f00; 
+		cursor: pointer; 
+		padding: 8px 15px; 
+		font-size: 16px; 
+		border-radius: 25px;
+		font-family: 'Roboto', sans-serif;
+}
+
+p {
+	color: #fdfdfb;
+	font-family: 'Roboto', sans-serif;
+}
+
+#resultat {
+	color: #fdfdfb;
+	font-family: 'Roboto', sans-serif;
+	font-size: 18px;
+}
+
+#delete {
+		color: #fdfdfb; 
+		border-color: #fdfdfb; 
+		border: solid;
+		background-color: #648f00; 
+		cursor: pointer; 
+		padding: 8px 15px; 
+		font-size: 16px; 
+		border-radius: 25px;
+		font-family: 'Roboto', sans-serif;
+}
+
+#buttonDel {
+		color: #fdfdfb; 
+		border-color: #fdfdfb; 
+		border: solid;
+		background-color: #648f00; 
+		cursor: pointer; 
+		padding: 8px 15px; 
+		font-size: 16px; 
+		border-radius: 25px;
+		font-family: 'Roboto', sans-serif;
+}
+
+#footer {
+	position:fixed;
+	left:0px;
+	bottom:0px;
+	height:50px;
+	width:100%;
+	background:#64A300;
+	text-align: center;
+}
+
+

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Thread list</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+</head>
+<body>
+	<h1>Thread list</h1>
+ 	
+ 	<script id="template" type="text/x-handlebars-template">
+ 		{{#each threads}}
+ 		
+ 		<li>
+ 			<a href="/threads{{id}}">{{title}}</a>
+ 		</li>
+ 		{{/each}}
+ 	</script>
+ 	<ul id="thread-list"></ul>
+
+ 	<form action="http://localhost:3000/" method="POST">
+ 		
+ 		Id: <input name="id" autocomplete="off" method"POST" /><br>
+      	Title: <input name="title" autocomplete="off" /><br>
+      	Text: <input name="text" autocomplete="off" /><br>
+
+
+      	<button> Send </button>
+
+    </form>
+
+    <form action="http://localhost:3000/" method="DELETE">
+ 		
+ 		
+<button type="reset"> Delete </button>
+
+    </form>
+     
+ <script>
+ 		var source = document.getElementById('template').innerHTML;
+ 		var render = Handlebars.compile(source);
+ 		
+ 		$ajax({
+ 			url: '/api/threads',	
+ 			dataType: "json",
+ 		}).done(function (data) {
+ 			console.log(data);
+ 			var threadList = document.getElementById('thread-list');
+ 			var html = render(data);
+ 			threadList.innerHTML = html;
+	
+ 		});
+
+ </script>
+</body>
+</html>

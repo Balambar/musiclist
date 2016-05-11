@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<title>Top Music Artist & Songs!</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+</head>
+
+<body>
+	<h1> Make your own top music list! </h1>
+
+	<!-- Listan foor loop listan handlebars -->
+	<script id="template" type="text/x-handlebars-template">
+
+		{{myTitle}}
+		<ol>
+			{{#each data}}
+			<li>	
+				<a href="/{{id}}">{{title}}:&nbsp;</a>
+				{{text}}
+			</li>
+			{{/each}}
+		</ol>
+	</script>
+
+	<!-- använder en form,action metoden som skickas till specifiera adress till servern, method attributen specifiera post när send knappen används.-->
+	<form action="/insert" method="POST">		
+		<p> Artist: <input id="artist" name="title" autocomplete="off" />
+		<p> Songname: <input name="text" autocomplete="off" />
+		
+		<!-- send knappen -->
+		<button> Send </button>
+		
+	</form>
+
+	<!-- update -->
+	<div id="uppdatera">
+	<p>
+	Id: <input id="Updateid" autocomplete="off"  />
+	
+	<p> Artist: <input id="artist1" name="artist1" autocomplete="off" />
+
+	<p> Songname: <input id="song1" name="song1" autocomplete="off" />
+	
+	<!-- update knappen -->
+	<button id="update"> Change </button>
+	<p></p>
+	</div>
+	<br>
+	
+	<!-- visar resultatet -->
+	<div id="resultat">
+	</div>
+
+	<div id="delete">
+	<!-- Delete -->
+	Id: <input id="id" autocomplete="off"  />
+	<button id="buttonDel"> Delete </button>
+	</div>
+
+</form>
+		<footer id="footer">
+  			<p>By: Jason Kuchral</p>
+  			<p>Contact information: <a href="mailto:jason.kuchral@gmail.com">
+ 			 Jason.Kuhcral@gmail.com</a>.</p>
+		</footer>
+<script>
+ 		//delete
+ 		var id = document.getElementById('id');
+ 		//buttonDel id
+ 		var button = document.getElementById('buttonDel');
+ 		
+ 		//update
+ 		var updateButton = document.getElementById('update');
+ 		var Updateid = document.getElementById('Updateid');
+ 		var title = document.getElementById('artist1');
+ 		var text = document.getElementById('song1');
+ 		
+ 		//update knappen
+ 		updateButton.addEventListener('click', function(){
+ 			var update = parseInt(Updateid.value);
+ 			
+ 			//Använder alla ajax req.
+ 			$.ajax({
+ 				url: '/' + update,
+ 				method: 'PUT',
+ 				//datan skickas till servern.
+ 				data: {
+ 					title: title.value, 
+ 					text: text.value
+ 				}
+
+ 			})
+ 			.done(function(data){
+ 				$.ajax({
+ 					url: '/db'
+ 				})
+ 				.done(function (data){
+ 					console.log(data);
+ 					var context = {myTitle: "uppdatera", data};
+ 					var html = render(context);
+ 					resultat.innerHTML = html;
+
+ 				})
+
+ 			})
+ 		})
+ 		//radera knappen
+ 		button.addEventListener('click', function(){
+ 			var tabort = id.value;
+ 			console.log(tabort);
+ 			$.ajax({
+ 				url: '/' + tabort,
+ 				method: 'DELETE'
+
+ 			})
+ 			.done(function(data){
+ 				$.ajax({
+ 					url: '/db'
+ 				})
+ 		//radera
+ 		.done(function (data){
+ 			console.log(data);
+ 			var context = {myTitle: "Raderad", data};
+ 			var html = render(context);
+ 			resultat.innerHTML = html;
+
+ 		})
+
+ 	})
+ 		})
+ 		//hämtar id template, lägger den i variabel source.
+ 		var source = document.getElementById('template').innerHTML;
+ 		var render = Handlebars.compile(source);
+ 		$.ajax({
+ 			url: '/db'
+ 		})
+ 		//Topplistan
+ 		.done(function (data){
+ 			console.log(data);
+ 			var context = {myTitle: "Topplistan", data};
+ 			var html = render(context);
+ 			resultat.innerHTML = html;
+
+ 		})
+
+ 		
+ 	</script>
+ </body>
+ </html>
